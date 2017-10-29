@@ -1,1 +1,2 @@
-# NoMoreMobile
+# Chrome-FindOnPage
+FindOnPage Chrome extension
