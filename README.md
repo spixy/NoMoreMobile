@@ -1,2 +1,2 @@
 # NoMoreMobile
-Chrome extension
+Converts mobile URLs to normal (desktop) URLs
