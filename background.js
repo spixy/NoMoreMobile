@@ -1,54 +1,65 @@
-function getNewUrl(url)
+function fastIndexOf(array, item)
+{
+  var i = array.length;
+  while (i--)
+  {
+     if (array[i] === item)
+         return i;
+  }
+  return -1;
+}
+
+function tryGetNewUrl(url)
 {
   var parts = url.split("//");
 
-  if (parts.length != 2)
+  if (parts.length !== 2)
   {
-    console.error("Invalid URL");
     return null;
   }
 
-  var newUrl = parts[0] + "//";
-  var parts = parts[1].split(".");
+  var newUrl = parts[0];
+  parts = parts[1].split(".");
+  var m_index = fastIndexOf(parts, "m");
 
-  if (parts.length == 0)
+  // ".m." cannot be in 1st and 2nd level domain
+  if (m_index === -1 || m_index > parts.length - 3)
   {
-    console.error("Invalid URL");
     return null;
   }
 
-  var lastIndex = parts.length - 1;
-  var found = false;
+  return createNewUrl(parts, m_index, newUrl);
+}
 
-  for (var i = 0; i < lastIndex; i++)
+function createNewUrl(parts, m_index, newUrl)
+{
+  var last_index = parts.length - 1;
+
+  newUrl += "//";
+  for (var i = 0; i < m_index; ++i)
   {
-    var part = parts[i];
-    if (part === "m" && !found)
-    {
-      found = true;
-    }
-    else
-    {
-      newUrl += parts[i] + ".";
-      found = true;
-    }
+    newUrl += parts[i] + ".";
+  }
+  for (var i = m_index + 1; i < last_index; ++i)
+  {
+    newUrl += parts[i] + ".";
   }
 
-  newUrl += parts[lastIndex];
-  return newUrl;
+  return newUrl + parts[last_index];
 }
 
 chrome.webRequest.onBeforeRequest.addListener(
     function(details)
     {
-        var host = getNewUrl(details.url);
-         return {redirectUrl: host + details.url.match(/^https?:\/\/[^\/]+([\S\s]*)/)[1]};
+        var host = tryGetNewUrl(details.url);
+        if (host !== null)
+        {
+          return { redirectUrl: host };
+        }
     },
     {
-        urls: [
-          "*"
-        ],
-        types: ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
+        urls: ["<all_urls>"],
+        types: ["main_frame"]
     },
     ["blocking"]
 );

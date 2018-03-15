@@ -1,18 +1,21 @@
 {
   "manifest_version": 2,
-
-  "name": "NoMoreMobile",
-  "description": "Redirects mobile pages to PC pages.",
-  "version": "1.0",
-
+  "name": "No More Mobile",
+  "description": "Redirects mobile pages to classic (desktop) pages",
+  "version": "0.1",
   "background":
   {
     "scripts": ["background.js"]
   },
-
+  "icons":
+  {
+    "128": "icon.png"
+  },
   "permissions":
   [
     "webRequest",
-    "webRequestBlocking"
+    "webRequestBlocking",
+    "http://*/*",
+    "https://*/*"
   ]
 }
