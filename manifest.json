@@ -5,14 +5,14 @@
   "description": "Redirects mobile pages to PC pages.",
   "version": "1.0",
 
-  "background": [
-    {
-      "js": ["background.js"],
-      "persistent": false
-    }
-  ],
+  "background":
+  {
+    "scripts": ["background.js"]
+  },
 
-  "permissions": [
-    "tabs"
+  "permissions":
+  [
+    "webRequest",
+    "webRequestBlocking"
   ]
 }
