@@ -1,8 +1,10 @@
 {
   "manifest_version": 2,
   "name": "No More Mobile",
-  "description": "Redirects mobile pages to classic (desktop) pages",
-  "version": "0.1",
+  "description": "__MSG_appDesc__",
+  "version": "1.0",
+  "default_locale": "en",
+  "options_page": "options.html",
   "background":
   {
     "scripts": ["background.js"]
@@ -16,6 +18,7 @@
     "webRequest",
     "webRequestBlocking",
     "http://*/*",
-    "https://*/*"
+    "https://*/*",
+    "storage"
   ]
 }

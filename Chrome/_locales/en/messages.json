@@ -1,0 +1,6 @@
+{
+  "appDesc": {
+    "message": "Redirects mobile pages to classic (desktop) pages", 
+    "description":"The description of the application, displayed in the web store."
+  }
+}
