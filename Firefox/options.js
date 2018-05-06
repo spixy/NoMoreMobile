@@ -5,7 +5,7 @@ var enabledItem = null;
 var urls = [];
 
 function GetItemCount() {
-  return urlList.childNodes.length;
+  return urlList.childNodes.length - 2;
 }
 
 function getIndex(button) {
