@@ -1,7 +1,9 @@
 # No More Mobile
+
 Redirects mobile pages to classic (desktop) pages
 
 ### Download
+
 * [Google Chrome](https://chrome.google.com/webstore/detail/no-more-mobile/cljmdbnbfcpcipgnbbokjhnjhhlncflf)
 * [Mozilla Firefox](https://addons.mozilla.org/firefox/addon/no-more-mobile/)
 

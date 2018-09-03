@@ -1,4 +1,4 @@
-var blackList = [];
+var blackList = [ "smedata.sk" ];
 var blackListSize = 0;
 var useBlackList = false;
 
